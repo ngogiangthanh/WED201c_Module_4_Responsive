@@ -34,3 +34,56 @@ img {
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+/* Mobile view must use a mobile-first approach  (default) */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr; /* One column */
+    gap: 10px; /* Gap between rows and columns */
+}
+
+/* Tablet  view must trigger at 772px */
+@media (min-width: 772px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+    }
+
+    img {
+        border-radius: 50%; /* Set the border radius on the figures to create a circular shape */
+    }
+
+    .grid figure:last-child {
+        grid-column: span 2; /* Set the last figure  to take up both columns */
+    }
+}
+
+/* Large screen view must trigger at 992px */
+@media (min-width: 992px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr); /* Set  every third figure  to take up both columns */
+    }
+
+    img {
+        border-radius: 0; /* Remove the border radius from all of the figures */
+    }
+
+    .grid figure:nth-child(3n) {
+        grid-column: span 2; /* Every third figure spans two columns */
+    }
+}
+
+/* Prefers-reduced-motion media query must */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto; /* Remove the scroll behavior */
+    }
+}
+
+/* Create a media query for dark colors  */
+@media (prefers-color-scheme: dark) {
+    img {
+        background-color: #333; /* Change the background-color of the figures to a dark color */
+        color: #f0e68c; /* Change the font color of the figures  to a lighter (possibly yellow-ish) color */
+        border-color: black; /* Change the border color of the figures  to black */
+    }
+}
